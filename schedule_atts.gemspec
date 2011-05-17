@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'ice_cube', '>= 0.6.4'
   s.add_dependency 'activesupport'
 
+  s.add_development_dependency 'ruby-debug'
   s.add_development_dependency 'rspec', '>= 2.3'
   s.add_development_dependency 'facets'
 end

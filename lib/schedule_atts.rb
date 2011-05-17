@@ -1,3 +1,4 @@
+require 'time'
 require 'ice_cube'
 require 'active_support'
 require 'active_support/time_with_zone'
