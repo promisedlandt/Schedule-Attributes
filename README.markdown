@@ -48,11 +48,11 @@ The following parameters will only be used if the `repeat` parameter is `1`.
 
 ##### `:start_date`
 
-The date at which the event starts repeating. Must be parseable by `Time.parse`.
+The date at which the event starts repeating. Must be parseable by `Time.parse`. If not given, will use the current date.
 
 #### `:interval_unit`
 
-The interval unit by which the event repeats. Can be `"day"` or `"week"`. For example, if the even repeats every day, this would be `"day"`. If it repeats weekly, this would be `"week"`.
+The interval unit by which the event repeats. Can be `"day"`, `"week"` or `"month"`. For example, if the even repeats every day, this would be `"day"`. If it repeats weekly, this would be `"week"`. If it repeats monthly, this would be `"monthly"`
 
 #### `:interval`
 
