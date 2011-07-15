@@ -23,6 +23,7 @@ module ScheduleAtts
     options[:start_date] &&= ScheduleAttributes.parse_in_timezone(options[:start_date])
     options[:date]       &&= ScheduleAttributes.parse_in_timezone(options[:date])
     options[:until_date] &&= ScheduleAttributes.parse_in_timezone(options[:until_date])
+    options[:weeks_of_month] ||= [1]
 
     if options[:repeat].to_i == 0
       @schedule = IceCube::Schedule.new(options[:date], :duration => options[:duration])
@@ -35,8 +36,11 @@ module ScheduleAtts
           IceCube::Rule.daily options[:interval]
         when 'week'
           IceCube::Rule.weekly(options[:interval]).day( *IceCube::DAYS.keys.select{|day| options[day].to_i == 1 } )
-        when 'month'
-          IceCube::Rule.monthly(options[:interval]).day( *IceCube::DAYS.keys.select{|day| options[day].to_i == 1 } )
+        when 'week_month'
+          days = *IceCube::DAYS.keys.select{|day| options[day].to_i == 1 } 
+          days.each do |day|
+            IceCube::Rule.monthly(options[:interval]).day_of_week(day => options[:weeks_of_month])
+          end
       end
 
       rule.until(options[:until_date]) if options[:ends] == 'eventually'
