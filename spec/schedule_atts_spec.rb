@@ -134,6 +134,28 @@ describe ScheduledModel do
           )
         end
       end
+
+      context "when it repeats monthly" do
+        before do
+          schedule.add_recurrence_date(Date.tomorrow)
+          schedule.add_recurrence_rule(IceCube::Rule.monthly(4).day_of_week(:monday => [1, 3], :wednesday => [1, 3], :friday => [1, 3]))
+        end
+        it do
+          should == OpenStruct.new(
+            :repeat        => 1,
+            :start_date    => Date.tomorrow,
+            :interval_unit => "week_month", 
+            :interval      => 4,
+            :ends          => 'never',
+            :monday        => 1,
+            :wednesday     => 1,
+            :friday        => 1,
+            :weeks_of_month=> [1, 3],
+
+            :date          => Date.today #for the form
+          )
+        end
+      end
     end
   end
 end

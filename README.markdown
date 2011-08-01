@@ -63,7 +63,7 @@ The interval by which the event repeats. Should be an integer (in string format)
 Indicates with a `0` or `1` whether the event repeats on this day. For example, if the event repeats every other week on Tues and Thursday, then the parameters would include these: `:interval => "2", :interval_unit => "week", :tuesday => "1", :thursday => "1"`. These parameters are only used if `:repeat` is `1` and `:interval_unit` is `"week"`.
 
 #### `:weeks_of_month`
-Only used if `:interval_unit` is `"monthly"`. An array with the week-of-month numbers during which the event repeats. For example, if the event repeats during every first and third week of every month, `:weeks_of_month` would be `[1, 3]`.
+Only used if `:interval_unit` is `"monthly"`. An array with the week-of-month numbers during which the event repeats. For example, if the event repeats during every first and third week of every month, `:weeks_of_month` would be `[1, 3]`. Negative indices count from the end of the month, `[2, -1]` would be the second and the last week of the month. Defaults to the first week, so `[1]`.
 
 ## `schedule_attributes`
 
